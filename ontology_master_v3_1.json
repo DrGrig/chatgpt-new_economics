@@ -1,0 +1,2865 @@
+{
+  "ontology": {
+    "name": "Reality Ontology",
+    "version": "3.1",
+    "status": "draft",
+    "language": "ru",
+    "description": "Unified ontology containing the base Entity model, 10 core classes, computed Subject classification, properties, methods, constraints, relations, provenance, ontology-evolution rules, and the agreed NeedType→Subcategory→NeedInstance framework for computing absolute need intensity N_i_abs(t), H_R(t), and normalized needs matrix D_R(t).",
+    "architecture": {
+      "base_class": "Entity",
+      "core_classes": [
+        "Resource",
+        "Product",
+        "Infrastructure",
+        "Location",
+        "Information",
+        "LegalConstruct",
+        "State",
+        "Event",
+        "Process",
+        "Need"
+      ],
+      "computed_classes": [
+        "Subject"
+      ],
+      "core_cycle": [
+        "Entity",
+        "State",
+        "Need",
+        "Resource",
+        "Process",
+        "Product",
+        "State"
+      ],
+      "context_layers": [
+        "Infrastructure",
+        "Location",
+        "Information",
+        "LegalConstruct"
+      ]
+    },
+    "schema_module": {
+      "ontology": {
+        "name": "Ontology of Reality for Dynamic Needs Matrix",
+        "language": "ru",
+        "version": "2.0-draft",
+        "date": "2026-09-04",
+        "principles": {
+          "base_class": "Entity",
+          "multiple_class_membership": true,
+          "fuzzy_membership": "mu in [0,1] where applicable",
+          "value_confidence_separation": true,
+          "provenance_required": true,
+          "versioned_evolution": true
+        },
+        "property_record": {
+          "fields": [
+            "value",
+            "unit",
+            "time",
+            "source",
+            "method",
+            "version",
+            "confidence"
+          ]
+        },
+        "classes": {
+          "Entity": {
+            "description": "Любой различимый объект реальности, существующий или существовавший как идентифицируемая единица и представимый в онтологии.",
+            "inherits_from": null,
+            "properties": [
+              {
+                "name": "ID",
+                "description": "Уникальный идентификатор Entity",
+                "type": "string",
+                "requirement": "обязательно"
+              },
+              {
+                "name": "Name / Label",
+                "description": "Человекочитаемое имя или метка",
+                "type": "string",
+                "requirement": "необязательно"
+              },
+              {
+                "name": "ClassMembership",
+                "description": "Множество классов, к которым относится Entity",
+                "type": "set[class]",
+                "requirement": "обязательно"
+              },
+              {
+                "name": "μ_k",
+                "description": "Степень fuzzy-принадлежности к нечёткому классу",
+                "type": "number [0,1]",
+                "requirement": "если применимо"
+              },
+              {
+                "name": "Boundary",
+                "description": "Правило, определяющее границу объекта относительно среды",
+                "type": "rule / geometry",
+                "requirement": "концептуально обязательно"
+              },
+              {
+                "name": "Persistence",
+                "description": "Критерий сохранения идентичности во времени",
+                "type": "rule",
+                "requirement": "концептуально обязательно"
+              },
+              {
+                "name": "Components",
+                "description": "Составные Entity",
+                "type": "list[EntityID]",
+                "requirement": "если применимо"
+              },
+              {
+                "name": "Properties",
+                "description": "Набор специализированных свойств",
+                "type": "map",
+                "requirement": "обязательно"
+              },
+              {
+                "name": "State X(t)",
+                "description": "Текущее состояние объекта",
+                "type": "State reference",
+                "requirement": "если измеримо"
+              },
+              {
+                "name": "Location L(t)",
+                "description": "Физическая или логическая локализация",
+                "type": "Location reference",
+                "requirement": "если применимо"
+              },
+              {
+                "name": "t_birth / t_end",
+                "description": "Время возникновения и прекращения существования",
+                "type": "datetime",
+                "requirement": "желательно"
+              },
+              {
+                "name": "Status",
+                "description": "active / terminated / unknown / other",
+                "type": "enum",
+                "requirement": "обязательно"
+              },
+              {
+                "name": "Origin",
+                "description": "Происхождение или механизм возникновения",
+                "type": "reference / text",
+                "requirement": "желательно"
+              },
+              {
+                "name": "Provenance",
+                "description": "Происхождение данных и изменений",
+                "type": "Provenance record",
+                "requirement": "обязательно для данных"
+              },
+              {
+                "name": "Confidence c",
+                "description": "Уверенность в идентификации или оценке свойства",
+                "type": "number [0,1]",
+                "requirement": "для оценочных данных"
+              }
+            ],
+            "methods": [
+              {
+                "name": "create()",
+                "description": "Создать новое представление Entity при наличии достаточных данных об идентичности."
+              },
+              {
+                "name": "updateProperty()",
+                "description": "Обновить значение свойства с сохранением времени, источника и предыдущего значения."
+              },
+              {
+                "name": "updateState()",
+                "description": "Связать Entity с новым State и сохранить историю состояний."
+              },
+              {
+                "name": "classify() / reclassify()",
+                "description": "Добавить, удалить или изменить степень принадлежности к классу."
+              },
+              {
+                "name": "link() / unlink()",
+                "description": "Создать или прекратить типизированную связь с другим Entity."
+              },
+              {
+                "name": "merge()",
+                "description": "Объединить записи, если доказано, что они описывают один и тот же объект."
+              },
+              {
+                "name": "split()",
+                "description": "Разделить Entity, если ранее единый объект оказался несколькими различимыми объектами."
+              },
+              {
+                "name": "terminate()",
+                "description": "Зафиксировать прекращение существования Entity."
+              },
+              {
+                "name": "updateConfidence()",
+                "description": "Пересчитать достоверность данных при появлении новых источников."
+              },
+              {
+                "name": "traceProvenance()",
+                "description": "Получить происхождение текущего состояния, свойства или классификации."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Unique ID",
+                "rule": "ID каждого Entity уникален в пределах версии онтологии."
+              },
+              {
+                "name": "Valid fuzzy range",
+                "rule": "Для fuzzy-принадлежности и confidence: 0 ≤ value ≤ 1."
+              },
+              {
+                "name": "Temporal consistency",
+                "rule": "Если t_end задан, то t_birth ≤ t_end; состояние после t_end не создаётся без явного правила наследования/архивирования."
+              },
+              {
+                "name": "Boundary defined",
+                "rule": "Entity должен иметь определимую концептуальную границу, даже если она нечёткая или динамическая."
+              },
+              {
+                "name": "Persistence rule",
+                "rule": "Для продолжительно существующих объектов должен быть задан критерий тождества во времени."
+              },
+              {
+                "name": "Existing references",
+                "rule": "Components, State, Location и иные ссылки должны указывать на существующие или явно внешние Entity."
+              },
+              {
+                "name": "No silent overwrite",
+                "rule": "Обновление свойства не уничтожает предыдущее значение; создаётся история изменений."
+              },
+              {
+                "name": "Provenance required",
+                "rule": "Любое внешнее или вычисленное значение должно иметь source/method/version/time."
+              },
+              {
+                "name": "Confidence semantics",
+                "rule": "Низкая confidence не превращается автоматически в низкое value: значение и достоверность хранятся отдельно."
+              },
+              {
+                "name": "Class consistency",
+                "rule": "Специализированные классы не могут отменять базовые ограничения Entity без явного правила исключения."
+              }
+            ]
+          },
+          "Resource": {
+            "description": "То, что может быть использовано для удовлетворения потребностей или как вход в процесс.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Quantity",
+                "description": "Количество/объём ресурса"
+              },
+              {
+                "name": "Unit",
+                "description": "Единица измерения"
+              },
+              {
+                "name": "Availability",
+                "description": "Фактическая доступность"
+              },
+              {
+                "name": "Accessibility",
+                "description": "Физическая/правовая доступность"
+              },
+              {
+                "name": "Scarcity",
+                "description": "Степень дефицитности"
+              },
+              {
+                "name": "Renewability",
+                "description": "Возобновляемость"
+              },
+              {
+                "name": "RegenerationRate",
+                "description": "Скорость восполнения"
+              },
+              {
+                "name": "DepletionRate",
+                "description": "Скорость истощения"
+              },
+              {
+                "name": "Substitutability",
+                "description": "Возможность замещения"
+              },
+              {
+                "name": "Quality",
+                "description": "Пригодность/качество"
+              },
+              {
+                "name": "ExtractionCost",
+                "description": "Стоимость получения"
+              },
+              {
+                "name": "TransformationCost",
+                "description": "Стоимость преобразования"
+              },
+              {
+                "name": "StorageCost",
+                "description": "Стоимость хранения"
+              },
+              {
+                "name": "Transportability",
+                "description": "Перемещаемость"
+              },
+              {
+                "name": "Storability",
+                "description": "Возможность хранения"
+              },
+              {
+                "name": "Owner/Controller",
+                "description": "Владелец или контролирующий Entity"
+              },
+              {
+                "name": "UseRestrictions",
+                "description": "Ограничения использования"
+              },
+              {
+                "name": "Externalities",
+                "description": "Внешние эффекты использования"
+              }
+            ],
+            "methods": [
+              {
+                "name": "measureAvailability()",
+                "description": "Оценить доступный объём в заданных времени и локации."
+              },
+              {
+                "name": "allocate()",
+                "description": "Закрепить часть ресурса за Entity/Process/Need."
+              },
+              {
+                "name": "reserve()",
+                "description": "Временно вывести объём из свободного распределения."
+              },
+              {
+                "name": "transfer()",
+                "description": "Изменить владельца/контролёра или место ресурса."
+              },
+              {
+                "name": "consume()",
+                "description": "Уменьшить доступное количество вследствие использования."
+              },
+              {
+                "name": "transform()",
+                "description": "Преобразовать ресурс в другой Resource/Product через Process."
+              },
+              {
+                "name": "replenish()",
+                "description": "Увеличить количество вследствие восполнения."
+              },
+              {
+                "name": "estimateScarcity()",
+                "description": "Рассчитать scarcity относительно доступности и потребности."
+              },
+              {
+                "name": "matchNeed()",
+                "description": "Определить пригодность ресурса для удовлетворения Need."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Non-negative quantity",
+                "rule": "Quantity ≥ 0, кроме явно определённых бухгалтерских представлений, которые не являются физическим запасом."
+              },
+              {
+                "name": "Unit required",
+                "rule": "Количественный ресурс должен иметь единицу измерения."
+              },
+              {
+                "name": "Conservation rules",
+                "rule": "Для материальных/энергетических ресурсов преобразования должны соблюдать применимые законы сохранения."
+              },
+              {
+                "name": "Allocation limit",
+                "rule": "Сумма одновременных аллокаций не превышает доступное количество без явного механизма кредита/будущего ресурса."
+              },
+              {
+                "name": "Access ≠ existence",
+                "rule": "Наличие ресурса не означает его доступность; Availability и Accessibility различаются."
+              },
+              {
+                "name": "Renewability bounded",
+                "rule": "Renewability и связанные fuzzy-параметры лежат в [0,1]."
+              },
+              {
+                "name": "Traceable transformation",
+                "rule": "Transform должен ссылаться на Process и формировать происхождение результата."
+              },
+              {
+                "name": "Temporal stock consistency",
+                "rule": "Изменение запаса согласуется с inflow, outflow, transformation и measurement adjustments."
+              }
+            ],
+            "relations": [
+              "locatedAt -> Location",
+              "ownedOrControlledBy -> Entity",
+              "usedBy -> Process",
+              "satisfies -> Need",
+              "transformedInto -> Resource/Product",
+              "regulatedBy -> LegalConstruct"
+            ]
+          },
+          "Product": {
+            "description": "Результат процесса деятельности, обладающий функцией и потенциальной полезностью.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Producer",
+                "description": "Entity-производитель"
+              },
+              {
+                "name": "OutputOfProcess",
+                "description": "Процесс происхождения"
+              },
+              {
+                "name": "Composition",
+                "description": "Состав/компоненты"
+              },
+              {
+                "name": "Function",
+                "description": "Назначение"
+              },
+              {
+                "name": "TargetNeed",
+                "description": "Потребности, которые способен удовлетворять"
+              },
+              {
+                "name": "Quantity",
+                "description": "Количество"
+              },
+              {
+                "name": "Unit",
+                "description": "Единица измерения"
+              },
+              {
+                "name": "Quality",
+                "description": "Качество"
+              },
+              {
+                "name": "Performance",
+                "description": "Функциональная результативность"
+              },
+              {
+                "name": "Lifetime",
+                "description": "Срок службы"
+              },
+              {
+                "name": "Perishability",
+                "description": "Скорость потери полезности"
+              },
+              {
+                "name": "Reusability",
+                "description": "Повторное использование"
+              },
+              {
+                "name": "Repairability",
+                "description": "Ремонтопригодность"
+              },
+              {
+                "name": "Recyclability",
+                "description": "Перерабатываемость"
+              },
+              {
+                "name": "Substitutability",
+                "description": "Заменяемость"
+              },
+              {
+                "name": "ProductionCost",
+                "description": "Стоимость производства"
+              },
+              {
+                "name": "UseCost",
+                "description": "Стоимость эксплуатации"
+              },
+              {
+                "name": "Availability",
+                "description": "Доступность"
+              },
+              {
+                "name": "Ownership",
+                "description": "Право собственности/контроля"
+              },
+              {
+                "name": "Externalities",
+                "description": "Побочные эффекты"
+              }
+            ],
+            "methods": [
+              {
+                "name": "produce()",
+                "description": "Создать экземпляр Product как выход Process."
+              },
+              {
+                "name": "evaluateQuality()",
+                "description": "Оценить качество по определённым метрикам."
+              },
+              {
+                "name": "use()",
+                "description": "Использовать продукт для функции/удовлетворения Need."
+              },
+              {
+                "name": "degrade()",
+                "description": "Обновить качество/срок полезности во времени."
+              },
+              {
+                "name": "repair()",
+                "description": "Восстановить часть функциональности через Process."
+              },
+              {
+                "name": "reuse()",
+                "description": "Повторно применить продукт без полного преобразования."
+              },
+              {
+                "name": "recycle()",
+                "description": "Преобразовать продукт в Resource/Product."
+              },
+              {
+                "name": "retire()",
+                "description": "Вывести продукт из использования."
+              },
+              {
+                "name": "matchNeed()",
+                "description": "Оценить соответствие конкретной Need."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Origin required",
+                "rule": "Product должен иметь Producer/Process или иное объяснимое происхождение."
+              },
+              {
+                "name": "Functional definition",
+                "rule": "Для активного Product должна быть задана хотя бы одна функция или целевое применение."
+              },
+              {
+                "name": "Composition references",
+                "rule": "Компоненты, если заданы как Entity, должны существовать и иметь отношения partOf."
+              },
+              {
+                "name": "Quality provenance",
+                "rule": "Оценка Quality должна иметь метод и provenance."
+              },
+              {
+                "name": "Lifetime consistency",
+                "rule": "Возраст продукта не может превышать момент вывода/разрушения без статуса historical/archived."
+              },
+              {
+                "name": "No double counting",
+                "rule": "При превращении Product в Resource система должна предотвращать двойной учёт одного физического объекта."
+              },
+              {
+                "name": "Need matching explicit",
+                "rule": "Связь с Need требует критерия пригодности, а не только текстового совпадения."
+              }
+            ],
+            "relations": [
+              "producedBy -> Process",
+              "producedByEntity -> Entity",
+              "contains -> Entity",
+              "satisfies -> Need",
+              "usedIn -> Process",
+              "locatedAt -> Location",
+              "ownedBy -> Entity"
+            ]
+          },
+          "Infrastructure": {
+            "description": "Долговременно существующая система, обеспечивающая возможность или пропускную способность других процессов.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Function",
+                "description": "Инфраструктурная функция"
+              },
+              {
+                "name": "Capacity",
+                "description": "Максимальная мощность"
+              },
+              {
+                "name": "Throughput",
+                "description": "Пропускная способность"
+              },
+              {
+                "name": "Utilization",
+                "description": "Текущая загрузка"
+              },
+              {
+                "name": "Coverage",
+                "description": "Область охвата"
+              },
+              {
+                "name": "Accessibility",
+                "description": "Доступность"
+              },
+              {
+                "name": "Reliability",
+                "description": "Надёжность"
+              },
+              {
+                "name": "Redundancy",
+                "description": "Резервирование"
+              },
+              {
+                "name": "Wear",
+                "description": "Износ"
+              },
+              {
+                "name": "Lifetime",
+                "description": "Ожидаемый срок службы"
+              },
+              {
+                "name": "MaintenanceNeed",
+                "description": "Потребность в обслуживании"
+              },
+              {
+                "name": "MaintenanceCost",
+                "description": "Стоимость обслуживания"
+              },
+              {
+                "name": "Upgradeability",
+                "description": "Возможность модернизации"
+              },
+              {
+                "name": "Dependencies",
+                "description": "Зависимости"
+              },
+              {
+                "name": "Bottlenecks",
+                "description": "Ограничивающие узлы"
+              },
+              {
+                "name": "Owner/Operator",
+                "description": "Владелец/оператор"
+              },
+              {
+                "name": "OperatingCost",
+                "description": "Эксплуатационные расходы"
+              },
+              {
+                "name": "EnergyUse",
+                "description": "Потребление энергии"
+              },
+              {
+                "name": "Resilience",
+                "description": "Устойчивость к сбоям"
+              },
+              {
+                "name": "Externalities",
+                "description": "Внешние эффекты"
+              }
+            ],
+            "methods": [
+              {
+                "name": "provideCapacity()",
+                "description": "Предоставить инфраструктурную мощность Process/Entity."
+              },
+              {
+                "name": "measureUtilization()",
+                "description": "Рассчитать текущую загрузку."
+              },
+              {
+                "name": "maintain()",
+                "description": "Провести обслуживание, изменив Wear/Reliability."
+              },
+              {
+                "name": "repair()",
+                "description": "Восстановить работоспособность после отказа."
+              },
+              {
+                "name": "upgrade()",
+                "description": "Изменить Capacity/Throughput/Function."
+              },
+              {
+                "name": "decommission()",
+                "description": "Вывести инфраструктуру из эксплуатации."
+              },
+              {
+                "name": "detectBottleneck()",
+                "description": "Определить ограничивающий элемент."
+              },
+              {
+                "name": "estimateResilience()",
+                "description": "Оценить устойчивость к заданному классу нарушений."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Capacity bound",
+                "rule": "Utilization не должна превышать техническую Capacity без статуса overload."
+              },
+              {
+                "name": "Dependency consistency",
+                "rule": "Критические зависимости должны ссылаться на существующие Entity/Infrastructure/Resource."
+              },
+              {
+                "name": "Maintenance trace",
+                "rule": "Изменения Wear после обслуживания должны иметь Event/Process provenance."
+              },
+              {
+                "name": "Coverage semantics",
+                "rule": "Coverage задаётся географически, логически или по населению и не смешивается без явного преобразования."
+              },
+              {
+                "name": "Operational status",
+                "rule": "Capacity/Throughput активной эксплуатации не используются после decommission time."
+              },
+              {
+                "name": "Reliability scale",
+                "rule": "Fuzzy Reliability/Resilience хранятся в [0,1] с методом оценки."
+              }
+            ],
+            "relations": [
+              "supports -> Process",
+              "serves -> Entity/Location",
+              "dependsOn -> Infrastructure/Resource",
+              "operatedBy -> Entity",
+              "locatedAt -> Location",
+              "satisfies -> Need"
+            ]
+          },
+          "Location": {
+            "description": "Пространственный Entity, задающий место, границу и контекст существования других Entity.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Coordinates",
+                "description": "Координаты/геометрия"
+              },
+              {
+                "name": "Boundary",
+                "description": "Пространственная граница"
+              },
+              {
+                "name": "Area/Volume",
+                "description": "Площадь/объём"
+              },
+              {
+                "name": "ParentLocation",
+                "description": "Включающая территория"
+              },
+              {
+                "name": "ContainedEntities",
+                "description": "Объекты внутри"
+              },
+              {
+                "name": "Accessibility",
+                "description": "Доступность"
+              },
+              {
+                "name": "Connectivity",
+                "description": "Связность"
+              },
+              {
+                "name": "Population",
+                "description": "Население"
+              },
+              {
+                "name": "Density",
+                "description": "Плотность"
+              },
+              {
+                "name": "EnvironmentalState",
+                "description": "Экологические параметры"
+              },
+              {
+                "name": "Climate",
+                "description": "Климатические параметры"
+              },
+              {
+                "name": "NaturalResources",
+                "description": "Природные ресурсы"
+              },
+              {
+                "name": "Infrastructure",
+                "description": "Связанная инфраструктура"
+              },
+              {
+                "name": "LegalRegime",
+                "description": "Юрисдикция/режим"
+              },
+              {
+                "name": "RiskProfile",
+                "description": "Риски"
+              },
+              {
+                "name": "LandUse",
+                "description": "Использование"
+              },
+              {
+                "name": "Capacity",
+                "description": "Вместимость/несущая способность"
+              },
+              {
+                "name": "TemporalAccessibility",
+                "description": "Доступность во времени"
+              }
+            ],
+            "methods": [
+              {
+                "name": "contains()",
+                "description": "Проверить пространственное включение Entity."
+              },
+              {
+                "name": "locate()",
+                "description": "Определить положение Entity относительно Location."
+              },
+              {
+                "name": "measureDistance()",
+                "description": "Рассчитать расстояние по определённой метрике."
+              },
+              {
+                "name": "measureAccessibility()",
+                "description": "Оценить достижимость с учётом сети, времени и ограничений."
+              },
+              {
+                "name": "aggregateState()",
+                "description": "Агрегировать состояния Entity внутри территории."
+              },
+              {
+                "name": "updateBoundary()",
+                "description": "Изменить геометрию/границы с versioning."
+              },
+              {
+                "name": "estimateCapacity()",
+                "description": "Оценить допустимую нагрузку/вместимость."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Geometry validity",
+                "rule": "Boundary должна быть геометрически валидной для выбранной модели пространства."
+              },
+              {
+                "name": "Hierarchy consistency",
+                "rule": "ParentLocation не может создавать циклическую пространственную иерархию."
+              },
+              {
+                "name": "Temporal boundary",
+                "rule": "Изменение границы требует времени действия версии."
+              },
+              {
+                "name": "Coordinate reference",
+                "rule": "Координаты должны указывать систему отсчёта/CRS или иной логический координатный контекст."
+              },
+              {
+                "name": "Contained entity time",
+                "rule": "Пространственное включение относится к конкретному времени/интервалу."
+              },
+              {
+                "name": "Population provenance",
+                "rule": "Агрегированные показатели населения должны иметь дату и источник."
+              }
+            ],
+            "relations": [
+              "contains -> Entity",
+              "partOf -> Location",
+              "connectedTo -> Location",
+              "governedBy -> LegalConstruct",
+              "hasInfrastructure -> Infrastructure",
+              "containsResource -> Resource"
+            ]
+          },
+          "Information": {
+            "description": "Содержательно интерпретируемый объект данных/знания, который может храниться, передаваться и использоваться.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Content",
+                "description": "Содержание"
+              },
+              {
+                "name": "Format",
+                "description": "Формат"
+              },
+              {
+                "name": "Source",
+                "description": "Первичный источник"
+              },
+              {
+                "name": "Author/Generator",
+                "description": "Создатель"
+              },
+              {
+                "name": "CreationTime",
+                "description": "Время создания"
+              },
+              {
+                "name": "Validity",
+                "description": "Соответствие действительности"
+              },
+              {
+                "name": "Reliability",
+                "description": "Надёжность"
+              },
+              {
+                "name": "Confidence",
+                "description": "Уверенность оценки"
+              },
+              {
+                "name": "Freshness",
+                "description": "Актуальность"
+              },
+              {
+                "name": "Version",
+                "description": "Версия"
+              },
+              {
+                "name": "Granularity",
+                "description": "Детализация"
+              },
+              {
+                "name": "Completeness",
+                "description": "Полнота"
+              },
+              {
+                "name": "Consistency",
+                "description": "Непротиворечивость"
+              },
+              {
+                "name": "Reproducibility",
+                "description": "Воспроизводимость"
+              },
+              {
+                "name": "AccessRights",
+                "description": "Права доступа"
+              },
+              {
+                "name": "Ownership",
+                "description": "Владение/контроль"
+              },
+              {
+                "name": "Sensitivity",
+                "description": "Конфиденциальность"
+              },
+              {
+                "name": "Dependencies",
+                "description": "Зависимости"
+              },
+              {
+                "name": "SemanticLinks",
+                "description": "Семантические связи"
+              },
+              {
+                "name": "DecayRate",
+                "description": "Скорость устаревания"
+              }
+            ],
+            "methods": [
+              {
+                "name": "createVersion()",
+                "description": "Создать новую версию без уничтожения предыдущей."
+              },
+              {
+                "name": "validate()",
+                "description": "Проверить структуру, типы и логические правила."
+              },
+              {
+                "name": "verifySource()",
+                "description": "Проверить доступную цепочку происхождения."
+              },
+              {
+                "name": "updateConfidence()",
+                "description": "Пересчитать confidence при новых доказательствах."
+              },
+              {
+                "name": "derive()",
+                "description": "Создать производный информационный объект с указанием метода."
+              },
+              {
+                "name": "linkSemantically()",
+                "description": "Добавить типизированную семантическую связь."
+              },
+              {
+                "name": "restrictAccess()",
+                "description": "Изменить правила доступа."
+              },
+              {
+                "name": "archive()",
+                "description": "Перевести устаревшую версию в архивный статус."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Version immutability",
+                "rule": "Опубликованная версия не перезаписывается; исправление создаёт новую версию."
+              },
+              {
+                "name": "Source traceability",
+                "rule": "Производная информация должна ссылаться на исходные данные и метод."
+              },
+              {
+                "name": "Access compliance",
+                "rule": "Доступ и распространение должны соответствовать LegalConstruct."
+              },
+              {
+                "name": "Confidence separated",
+                "rule": "Reliability источника, Validity содержания и Confidence оценки не отождествляются."
+              },
+              {
+                "name": "No provenance loss",
+                "rule": "Трансформация не должна удалять происхождение входных данных."
+              },
+              {
+                "name": "Timestamp required",
+                "rule": "Для меняющейся информации должен быть указан момент актуальности."
+              }
+            ],
+            "relations": [
+              "derivedFrom -> Information",
+              "generatedBy -> Entity/Process",
+              "describes -> Entity/State/Event",
+              "usedBy -> Process",
+              "regulatedBy -> LegalConstruct"
+            ]
+          },
+          "LegalConstruct": {
+            "description": "Созданная институциональными правилами абстрактная конструкция прав, обязательств или ограничений.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Type",
+                "description": "Тип конструкции"
+              },
+              {
+                "name": "Jurisdiction",
+                "description": "Юрисдикция"
+              },
+              {
+                "name": "RightsHolder",
+                "description": "Носитель права"
+              },
+              {
+                "name": "ObligatedParty",
+                "description": "Обязанная сторона"
+              },
+              {
+                "name": "ObjectOfRight",
+                "description": "Объект права/обязательства"
+              },
+              {
+                "name": "Rights",
+                "description": "Права"
+              },
+              {
+                "name": "Obligations",
+                "description": "Обязательства"
+              },
+              {
+                "name": "Restrictions",
+                "description": "Ограничения"
+              },
+              {
+                "name": "ValidityStart",
+                "description": "Начало действия"
+              },
+              {
+                "name": "ValidityEnd",
+                "description": "Окончание действия"
+              },
+              {
+                "name": "ActivationConditions",
+                "description": "Условия вступления в силу"
+              },
+              {
+                "name": "TerminationConditions",
+                "description": "Условия прекращения"
+              },
+              {
+                "name": "Transferability",
+                "description": "Передаваемость"
+              },
+              {
+                "name": "Divisibility",
+                "description": "Делимость"
+              },
+              {
+                "name": "Enforceability",
+                "description": "Исполнимость"
+              },
+              {
+                "name": "Priority",
+                "description": "Приоритет"
+              },
+              {
+                "name": "Collateral",
+                "description": "Обеспечение"
+              },
+              {
+                "name": "Value",
+                "description": "Экономическая оценка"
+              },
+              {
+                "name": "Issuer/Authority",
+                "description": "Эмитент/орган"
+              },
+              {
+                "name": "VerificationSource",
+                "description": "Источник подтверждения"
+              }
+            ],
+            "methods": [
+              {
+                "name": "activate()",
+                "description": "Перевести в действующее состояние при выполнении условий."
+              },
+              {
+                "name": "terminate()",
+                "description": "Прекратить действие согласно условиям."
+              },
+              {
+                "name": "transfer()",
+                "description": "Изменить RightsHolder/ObligatedParty при допустимой передаваемости."
+              },
+              {
+                "name": "enforce()",
+                "description": "Запустить предусмотренный механизм исполнения."
+              },
+              {
+                "name": "verifyValidity()",
+                "description": "Проверить действительность во времени и юрисдикции."
+              },
+              {
+                "name": "amend()",
+                "description": "Создать новую версию условий с историей изменений."
+              },
+              {
+                "name": "attachCollateral()",
+                "description": "Связать обеспечение."
+              },
+              {
+                "name": "resolvePriority()",
+                "description": "Определить приоритет конкурирующих прав по заданному правилу."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Jurisdiction required",
+                "rule": "Для правовых эффектов должна быть определена юрисдикция или система правил."
+              },
+              {
+                "name": "Temporal validity",
+                "rule": "Действие ограничено ValidityStart/ValidityEnd и условиями."
+              },
+              {
+                "name": "Existing parties",
+                "rule": "RightsHolder, ObligatedParty и ObjectOfRight должны быть идентифицируемыми Entity."
+              },
+              {
+                "name": "Transfer only if allowed",
+                "rule": "Transfer возможен только если Transferability допускает его."
+              },
+              {
+                "name": "No silent amendment",
+                "rule": "Изменение условий создаёт новую версию/историю."
+              },
+              {
+                "name": "Authority provenance",
+                "rule": "Действительность должна быть связана с источником полномочий/правил."
+              },
+              {
+                "name": "Conflict resolution",
+                "rule": "Конфликтующие конструкции требуют явного правила Priority или неопределённого статуса."
+              }
+            ],
+            "relations": [
+              "grantsRightTo -> Entity",
+              "imposesObligationOn -> Entity",
+              "appliesTo -> Entity/Process/Resource",
+              "issuedBy -> Entity",
+              "securedBy -> Entity/Resource",
+              "governedIn -> Location"
+            ]
+          },
+          "State": {
+            "description": "Формальное описание значений релевантных переменных Entity в момент или интервал времени.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "SubjectEntity",
+                "description": "Entity, состояние которого описывается"
+              },
+              {
+                "name": "Variables",
+                "description": "Переменные состояния"
+              },
+              {
+                "name": "Values",
+                "description": "Значения"
+              },
+              {
+                "name": "Units",
+                "description": "Единицы"
+              },
+              {
+                "name": "Timestamp",
+                "description": "Момент/интервал"
+              },
+              {
+                "name": "ReferenceState",
+                "description": "Референтное состояние"
+              },
+              {
+                "name": "DesiredState",
+                "description": "Желаемое состояние"
+              },
+              {
+                "name": "Deviation",
+                "description": "Отклонение"
+              },
+              {
+                "name": "Stability",
+                "description": "Устойчивость"
+              },
+              {
+                "name": "Trend",
+                "description": "Направление изменения"
+              },
+              {
+                "name": "RateOfChange",
+                "description": "Скорость изменения"
+              },
+              {
+                "name": "Thresholds",
+                "description": "Критические пороги"
+              },
+              {
+                "name": "Uncertainty",
+                "description": "Неопределённость"
+              },
+              {
+                "name": "MeasurementMethod",
+                "description": "Метод измерения"
+              },
+              {
+                "name": "Source",
+                "description": "Источник"
+              },
+              {
+                "name": "Confidence",
+                "description": "Достоверность"
+              },
+              {
+                "name": "Dependencies",
+                "description": "Определяющие факторы"
+              }
+            ],
+            "methods": [
+              {
+                "name": "observe()",
+                "description": "Создать State на основании наблюдений/измерений."
+              },
+              {
+                "name": "compare()",
+                "description": "Сопоставить два состояния одного совместимого объекта/параметра."
+              },
+              {
+                "name": "computeDeviation()",
+                "description": "Рассчитать отклонение от Reference/Desired."
+              },
+              {
+                "name": "estimateTrend()",
+                "description": "Определить тренд по последовательности State."
+              },
+              {
+                "name": "detectThresholdCrossing()",
+                "description": "Зафиксировать переход заданного порога."
+              },
+              {
+                "name": "interpolate()",
+                "description": "Оценить состояние между наблюдениями с явной неопределённостью."
+              },
+              {
+                "name": "aggregate()",
+                "description": "Сформировать агрегированное состояние группы/Location."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Subject required",
+                "rule": "State всегда относится к одному или явно определённому агрегату Entity."
+              },
+              {
+                "name": "Timestamp required",
+                "rule": "State без временной привязки недопустим."
+              },
+              {
+                "name": "Dimension consistency",
+                "rule": "Сравниваемые значения должны быть размерностно совместимы или иметь преобразование."
+              },
+              {
+                "name": "No future fact",
+                "rule": "Прогноз не маркируется как наблюдаемое состояние; требуется отдельный status/method."
+              },
+              {
+                "name": "Confidence required for inferred",
+                "rule": "Интерполированные/вычисленные значения обязаны иметь confidence и method."
+              },
+              {
+                "name": "Immutable observation",
+                "rule": "Зафиксированное наблюдение не перезаписывается; корректировка создаёт новую запись."
+              }
+            ],
+            "relations": [
+              "stateOf -> Entity",
+              "measuredBy -> Entity/Process",
+              "derivedFrom -> Information",
+              "changedBy -> Event/Process",
+              "comparedTo -> State"
+            ]
+          },
+          "Event": {
+            "description": "Локализованный во времени факт, приводящий или соответствующий изменению состояния одного или нескольких Entity.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "EventType",
+                "description": "Тип события"
+              },
+              {
+                "name": "StartTime",
+                "description": "Начало"
+              },
+              {
+                "name": "EndTime",
+                "description": "Окончание"
+              },
+              {
+                "name": "Location",
+                "description": "Локализация"
+              },
+              {
+                "name": "Participants",
+                "description": "Участники"
+              },
+              {
+                "name": "Trigger",
+                "description": "Триггер"
+              },
+              {
+                "name": "Causes",
+                "description": "Причины"
+              },
+              {
+                "name": "Preconditions",
+                "description": "Предусловия"
+              },
+              {
+                "name": "StateBefore",
+                "description": "Состояние до"
+              },
+              {
+                "name": "StateChange ΔX",
+                "description": "Изменение"
+              },
+              {
+                "name": "StateAfter",
+                "description": "Состояние после"
+              },
+              {
+                "name": "Consequences",
+                "description": "Последствия"
+              },
+              {
+                "name": "Magnitude",
+                "description": "Масштаб"
+              },
+              {
+                "name": "Probability",
+                "description": "Вероятность для прогнозируемого события"
+              },
+              {
+                "name": "Reversibility",
+                "description": "Обратимость"
+              },
+              {
+                "name": "AffectedEntities",
+                "description": "Затронутые Entity"
+              },
+              {
+                "name": "Externalities",
+                "description": "Побочные эффекты"
+              },
+              {
+                "name": "Evidence",
+                "description": "Подтверждающие данные"
+              },
+              {
+                "name": "Confidence",
+                "description": "Уверенность"
+              }
+            ],
+            "methods": [
+              {
+                "name": "record()",
+                "description": "Зафиксировать произошедшее событие и evidence."
+              },
+              {
+                "name": "predict()",
+                "description": "Создать прогнозируемый Event с probability и методом."
+              },
+              {
+                "name": "linkCause()",
+                "description": "Связать возможную/подтверждённую причину с типом уверенности."
+              },
+              {
+                "name": "applyStateChange()",
+                "description": "Сформировать StateAfter на основании подтверждённого изменения."
+              },
+              {
+                "name": "assessMagnitude()",
+                "description": "Оценить масштаб по заданной шкале."
+              },
+              {
+                "name": "reverse()",
+                "description": "Зафиксировать обратное действие, если физически/логически возможно."
+              },
+              {
+                "name": "aggregateEvents()",
+                "description": "Объединить серию событий в более крупное событие без потери исходных ссылок."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Temporal order",
+                "rule": "StartTime ≤ EndTime, если EndTime задан."
+              },
+              {
+                "name": "Observed vs predicted",
+                "rule": "Произошедшее и прогнозируемое событие имеют разные статусы."
+              },
+              {
+                "name": "Evidence provenance",
+                "rule": "Observed Event должен иметь evidence/source или явно низкую confidence."
+              },
+              {
+                "name": "Cause ≠ correlation",
+                "rule": "Связь cause должна отличаться от temporalAssociation/correlation."
+              },
+              {
+                "name": "State consistency",
+                "rule": "StateAfter должен согласовываться с StateBefore + StateChange в пределах модели."
+              },
+              {
+                "name": "Participants exist",
+                "rule": "Участники и AffectedEntities должны быть Entity."
+              },
+              {
+                "name": "No duplicate event",
+                "rule": "Дедупликация должна учитывать время, место, участников и provenance."
+              }
+            ],
+            "relations": [
+              "occursAt -> Location",
+              "involves -> Entity",
+              "changes -> State",
+              "causedBy -> Event/Process/Entity",
+              "evidencedBy -> Information"
+            ]
+          },
+          "Process": {
+            "description": "Протяжённое во времени преобразование входов в выходы и/или изменение состояний.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "ProcessType",
+                "description": "Тип процесса"
+              },
+              {
+                "name": "Inputs",
+                "description": "Входы"
+              },
+              {
+                "name": "Outputs",
+                "description": "Выходы"
+              },
+              {
+                "name": "Executor",
+                "description": "Исполнитель"
+              },
+              {
+                "name": "Participants",
+                "description": "Участники"
+              },
+              {
+                "name": "StartTime",
+                "description": "Начало"
+              },
+              {
+                "name": "EndTime",
+                "description": "Окончание"
+              },
+              {
+                "name": "Duration",
+                "description": "Продолжительность"
+              },
+              {
+                "name": "Location",
+                "description": "Локализация"
+              },
+              {
+                "name": "ResourceUse",
+                "description": "Используемые ресурсы"
+              },
+              {
+                "name": "EnergyUse",
+                "description": "Энергозатраты"
+              },
+              {
+                "name": "InformationUse",
+                "description": "Информация"
+              },
+              {
+                "name": "Rules/Algorithm",
+                "description": "Правила/алгоритм"
+              },
+              {
+                "name": "Capacity",
+                "description": "Максимальная мощность"
+              },
+              {
+                "name": "Throughput",
+                "description": "Фактическая пропускная способность"
+              },
+              {
+                "name": "Efficiency",
+                "description": "Эффективность"
+              },
+              {
+                "name": "Quality",
+                "description": "Качество результата"
+              },
+              {
+                "name": "Cost",
+                "description": "Полные затраты"
+              },
+              {
+                "name": "Bottlenecks",
+                "description": "Ограничители"
+              },
+              {
+                "name": "Dependencies",
+                "description": "Зависимости"
+              },
+              {
+                "name": "SideEffects",
+                "description": "Побочные эффекты"
+              },
+              {
+                "name": "Externalities",
+                "description": "Внешние эффекты"
+              },
+              {
+                "name": "Reversibility",
+                "description": "Обратимость"
+              },
+              {
+                "name": "ControlParameters",
+                "description": "Управляющие параметры"
+              },
+              {
+                "name": "OutcomeStateChange",
+                "description": "Изменение состояний"
+              }
+            ],
+            "methods": [
+              {
+                "name": "start()",
+                "description": "Перевести процесс в active при выполнении предусловий."
+              },
+              {
+                "name": "pause() / resume()",
+                "description": "Приостановить/возобновить, если тип процесса это допускает."
+              },
+              {
+                "name": "stop()",
+                "description": "Завершить процесс."
+              },
+              {
+                "name": "consumeInputs()",
+                "description": "Учесть использование входов/ресурсов."
+              },
+              {
+                "name": "produceOutputs()",
+                "description": "Создать выходные Product/Resource/Information/State."
+              },
+              {
+                "name": "measureEfficiency()",
+                "description": "Рассчитать эффективность по определённой функции."
+              },
+              {
+                "name": "detectBottleneck()",
+                "description": "Определить ограничивающий фактор."
+              },
+              {
+                "name": "adjustControl()",
+                "description": "Изменить управляющий параметр с записью причины."
+              },
+              {
+                "name": "simulate()",
+                "description": "Рассчитать прогноз результата без изменения фактического состояния."
+              },
+              {
+                "name": "audit()",
+                "description": "Восстановить цепочку inputs → transformations → outputs."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Input existence",
+                "rule": "Все обязательные Inputs должны существовать или быть явно виртуальными/прогнозируемыми."
+              },
+              {
+                "name": "Temporal consistency",
+                "rule": "StartTime ≤ EndTime; Duration согласуется с интервалом."
+              },
+              {
+                "name": "Resource accounting",
+                "rule": "Потребление ресурсов должно отражаться в их State/Quantity."
+              },
+              {
+                "name": "Output provenance",
+                "rule": "Каждый Output имеет ссылку на Process и использованные Inputs."
+              },
+              {
+                "name": "Simulation separation",
+                "rule": "Результат simulate не изменяет фактические State без отдельного commit/action."
+              },
+              {
+                "name": "Capacity bound",
+                "rule": "Throughput > Capacity требует overload state или пересмотра Capacity."
+              },
+              {
+                "name": "Algorithm version",
+                "rule": "Если результат зависит от Rules/Algorithm, должна быть зафиксирована версия."
+              },
+              {
+                "name": "No hidden side effects",
+                "rule": "Известные SideEffects/Externalities сохраняются как часть результата, а не игнорируются."
+              }
+            ],
+            "relations": [
+              "uses -> Resource/Information",
+              "produces -> Product/Resource/Information",
+              "executedBy -> Entity",
+              "occursAt -> Location",
+              "changes -> State",
+              "supportedBy -> Infrastructure",
+              "regulatedBy -> LegalConstruct",
+              "satisfies -> Need"
+            ]
+          },
+          "Need": {
+            "description": "Вычисляемая структура, описывающая значимый разрыв между фактическим и желаемым/референтным состоянием носителя или связанного с ним Entity.",
+            "inherits_from": "Entity",
+            "properties": [
+              {
+                "name": "Holder",
+                "description": "Носитель потребности"
+              },
+              {
+                "name": "TargetEntity/Object",
+                "description": "Объект потребности"
+              },
+              {
+                "name": "ActualState",
+                "description": "Фактическое X_actual"
+              },
+              {
+                "name": "DesiredState",
+                "description": "Желаемое X_desired"
+              },
+              {
+                "name": "ReferenceState",
+                "description": "Нормативный уровень"
+              },
+              {
+                "name": "Deficit D",
+                "description": "Величина разрыва"
+              },
+              {
+                "name": "Urgency U",
+                "description": "Срочность"
+              },
+              {
+                "name": "Significance V",
+                "description": "Значимость"
+              },
+              {
+                "name": "Satisfiability F",
+                "description": "Удовлетворяемость"
+              },
+              {
+                "name": "SaturationLevel",
+                "description": "Уровень насыщения"
+              },
+              {
+                "name": "MinimumThreshold",
+                "description": "Минимально допустимый уровень"
+              },
+              {
+                "name": "PriorityConstraints",
+                "description": "Ограничения приоритета"
+              },
+              {
+                "name": "TemporalHorizon",
+                "description": "Временной горизонт"
+              },
+              {
+                "name": "Duration",
+                "description": "Продолжительность"
+              },
+              {
+                "name": "Recurrence",
+                "description": "Повторяемость"
+              },
+              {
+                "name": "AffectedPopulation",
+                "description": "Масштаб населения/субъектов"
+              },
+              {
+                "name": "SpatialDistribution",
+                "description": "Пространственное распределение"
+              },
+              {
+                "name": "Substitutability",
+                "description": "Альтернативные способы удовлетворения"
+              },
+              {
+                "name": "Complementarity",
+                "description": "Комплементарность"
+              },
+              {
+                "name": "Conflict",
+                "description": "Конфликт с другими потребностями"
+              },
+              {
+                "name": "ResourcesRequired",
+                "description": "Необходимые ресурсы"
+              },
+              {
+                "name": "Products/ProcessesRequired",
+                "description": "Необходимые продукты/процессы"
+              },
+              {
+                "name": "ObservedDemand",
+                "description": "Наблюдаемый спрос/поведение"
+              },
+              {
+                "name": "SubjectiveAssessment",
+                "description": "Субъективная оценка"
+              },
+              {
+                "name": "ObjectiveIndicators",
+                "description": "Объективные индикаторы"
+              },
+              {
+                "name": "Confidence",
+                "description": "Достоверность оценки"
+              },
+              {
+                "name": "Weight w(t)",
+                "description": "Нормированный вес в D(t), когда рассчитан"
+              }
+            ],
+            "methods": [
+              {
+                "name": "detect()",
+                "description": "Создать Need при наличии определяемого значимого разрыва состояния."
+              },
+              {
+                "name": "measureDeficit()",
+                "description": "Рассчитать D по совместимым Actual/Desired/Reference State."
+              },
+              {
+                "name": "estimateUrgency()",
+                "description": "Оценить скорость/тяжесть последствий неудовлетворения."
+              },
+              {
+                "name": "estimateSignificance()",
+                "description": "Оценить значимость по принятой модели."
+              },
+              {
+                "name": "estimateSatisfiability()",
+                "description": "Оценить возможность удовлетворения при известных ресурсах/технологиях."
+              },
+              {
+                "name": "matchResources()",
+                "description": "Найти Resource/Product/Process, способные уменьшить дефицит."
+              },
+              {
+                "name": "measureSatisfaction()",
+                "description": "Оценить изменение Need после интервенции/процесса."
+              },
+              {
+                "name": "updateWeight()",
+                "description": "Передать параметры в алгоритм расчёта q_i и w_i."
+              },
+              {
+                "name": "resolveOverlap()",
+                "description": "Выявить дублирующие/вложенные Need."
+              },
+              {
+                "name": "detectConflict()",
+                "description": "Определить конфликт между потребностями и его тип."
+              }
+            ],
+            "constraints": [
+              {
+                "name": "Holder required",
+                "rule": "Need должна иметь Holder или явно определённый коллектив/экосистемный носитель."
+              },
+              {
+                "name": "State comparability",
+                "rule": "ActualState и Desired/ReferenceState должны быть сопоставимы или иметь явную функцию преобразования."
+              },
+              {
+                "name": "No negative deficit by default",
+                "rule": "D ≥ 0; превышение желаемого уровня описывается Saturation/Surplus, если модель не задаёт иное."
+              },
+              {
+                "name": "Evidence separation",
+                "rule": "SubjectiveAssessment и ObjectiveIndicators хранятся раздельно и могут иметь разные веса."
+              },
+              {
+                "name": "No direct weight assignment",
+                "rule": "w(t) не вводится вручную без provenance; он является результатом согласованного алгоритма."
+              },
+              {
+                "name": "Normalization external",
+                "rule": "Σw_i=1 относится к выбранному срезу матрицы D(t), а не к отдельной Need."
+              },
+              {
+                "name": "Overlap control",
+                "rule": "Пересекающиеся Need должны иметь отношения parent/child/overlap, чтобы избежать двойного счёта."
+              },
+              {
+                "name": "Temporal update",
+                "rule": "Изменение ActualState должно инициировать пересчёт зависимых параметров Need согласно правилам обновления."
+              },
+              {
+                "name": "Confidence propagation",
+                "rule": "Неопределённость исходных State/Indicators должна учитываться в Confidence параметров Need."
+              }
+            ],
+            "relations": [
+              "heldBy -> Entity",
+              "targets -> Entity/State",
+              "definedBy -> State",
+              "satisfiedBy -> Resource/Product/Process/Infrastructure",
+              "conflictsWith -> Need",
+              "complements -> Need",
+              "partOf -> Need",
+              "observedIn -> Location"
+            ]
+          }
+        },
+        "derived_classes": {
+          "Subject": {
+            "criterion": [
+              "B: устойчивость границы и идентичности",
+              "P: получение информации о среде/собственном состоянии",
+              "D: выбор между альтернативными реакциями",
+              "A: способность изменять состояние/среду",
+              "F: обратная связь"
+            ],
+            "profile": [
+              "E: subjective experience",
+              "A: self-awareness / functional self-model",
+              "M: memory",
+              "L: learning",
+              "G: autonomous goal formation",
+              "C: creative agency",
+              "R: decision autonomy/responsibility"
+            ],
+            "formal": "S_i = [[v_E,...,v_R],[c_E,...,c_R]]"
+          }
+        },
+        "core_relations": [
+          {
+            "source": "Entity",
+            "predicate": "hasState",
+            "target": "State"
+          },
+          {
+            "source": "Entity",
+            "predicate": "locatedIn",
+            "target": "Location"
+          },
+          {
+            "source": "Entity",
+            "predicate": "participatesIn",
+            "target": "Process"
+          },
+          {
+            "source": "Entity",
+            "predicate": "affectedBy",
+            "target": "Event"
+          },
+          {
+            "source": "Process",
+            "predicate": "uses",
+            "target": "Resource"
+          },
+          {
+            "source": "Process",
+            "predicate": "produces",
+            "target": "Product"
+          },
+          {
+            "source": "Process",
+            "predicate": "changes",
+            "target": "State"
+          },
+          {
+            "source": "Infrastructure",
+            "predicate": "supports",
+            "target": "Process"
+          },
+          {
+            "source": "Information",
+            "predicate": "informs/controls",
+            "target": "Process"
+          },
+          {
+            "source": "LegalConstruct",
+            "predicate": "regulates",
+            "target": "Entity / Process / Resource"
+          },
+          {
+            "source": "Need",
+            "predicate": "heldBy",
+            "target": "Entity / Subject"
+          },
+          {
+            "source": "Need",
+            "predicate": "definedByGapBetween",
+            "target": "ActualState ↔ DesiredState"
+          },
+          {
+            "source": "Need",
+            "predicate": "satisfiedBy",
+            "target": "Resource / Product / Process / Infrastructure"
+          },
+          {
+            "source": "Event",
+            "predicate": "changes",
+            "target": "State"
+          },
+          {
+            "source": "Location",
+            "predicate": "contains",
+            "target": "Entity"
+          }
+        ],
+        "evolution": {
+          "change_types": [
+            {
+              "type": "minor",
+              "meaning": "Источник данных, единица, исправление ошибки, уточнение без изменения смысла класса."
+            },
+            {
+              "type": "structural",
+              "meaning": "Добавление/удаление свойства, связи, метода, ограничения или класса."
+            },
+            {
+              "type": "fundamental",
+              "meaning": "Изменение базового определения, принципа классификации или расчёта."
+            }
+          ],
+          "change_record": [
+            "id",
+            "type",
+            "target",
+            "old_definition",
+            "new_definition",
+            "reason",
+            "evidence",
+            "author_or_system",
+            "timestamp",
+            "confidence",
+            "version_from",
+            "version_to",
+            "migration_rule",
+            "status"
+          ],
+          "rules": [
+            "Старая версия не уничтожается.",
+            "Любое изменение имеет provenance.",
+            "Deprecated элемент проходит active -> deprecated -> archived.",
+            "По возможности задаётся migration rule для старых данных.",
+            "AI/алгоритм может сформировать ChangeProposal; принятие фундаментальных изменений требует научной валидации.",
+            "Изменения должны быть обратимо трассируемы до старой версии."
+          ]
+        }
+      }
+    },
+    "relations_module": {
+      "ontology_module": "core_relations",
+      "version": "1.0",
+      "language": "ru",
+      "created_at": "2026-09-04",
+      "relation_schema": {
+        "generic_fields": {
+          "source": "source class/entity",
+          "relation": "relation type",
+          "target": "target class/entity",
+          "strength": "fuzzy relation strength, usually [0,1] or [-1,1] for signed effects",
+          "confidence": "confidence in relation assessment [0,1]",
+          "time": "time point or interval",
+          "provenance": "source/method/version/history"
+        },
+        "cardinality_values": [
+          "1:1",
+          "1:n",
+          "n:1",
+          "n:m"
+        ],
+        "obligation_values": [
+          "required",
+          "optional",
+          "conditional"
+        ]
+      },
+      "relations": [
+        {
+          "id": "entity_need",
+          "source": "Entity",
+          "target": "Need",
+          "cardinality": "n:m",
+          "types": [
+            "hasNeed",
+            "representsNeed",
+            "affectedByNeed",
+            "generatesNeed"
+          ],
+          "parameters": {
+            "membership_strength": "[0,1]",
+            "confidence": "[0,1]",
+            "intensity": "[0,1]",
+            "dependency": "[0,1]",
+            "time": "timestamp/interval",
+            "scope": [
+              "individual",
+              "group",
+              "collective"
+            ],
+            "provenance": "required"
+          },
+          "constraints": [
+            "Need must reference at least one holder/represented entity where applicable",
+            "Need is not identical to preference"
+          ]
+        },
+        {
+          "id": "need_state",
+          "source": "Need",
+          "target": "State",
+          "cardinality": "n:m",
+          "types": [
+            "derivedFromState",
+            "targetsState",
+            "changesState",
+            "resolvedByStateTransition"
+          ],
+          "parameters": {
+            "deficit": "[0,1] after normalization",
+            "urgency": "[0,1]",
+            "reversibility": "[0,1]",
+            "threshold": "optional numeric/interval",
+            "confidence": "[0,1]"
+          },
+          "formulas": [
+            "Need_i = f(X_actual, X_desired)",
+            "D_i = d(X_actual, X_desired)"
+          ],
+          "notes": [
+            "Distinguish NeedType from NeedInstance(t)",
+            "Desired state may contain biological, social/normative and subjective components"
+          ]
+        },
+        {
+          "id": "need_resource",
+          "source": "Need",
+          "target": "Resource",
+          "cardinality": "n:m",
+          "types": [
+            "satisfies",
+            "partiallySatisfies",
+            "enablesSatisfaction",
+            "substitutesFor"
+          ],
+          "parameters": {
+            "effectiveness": "[0,1]",
+            "required_quantity": "numeric",
+            "availability": "[0,1]",
+            "substitutability": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval",
+            "minimum_threshold": "optional numeric",
+            "saturation_threshold": "optional numeric"
+          },
+          "formulas": [
+            "S_N = f(q_R)",
+            "marginal_satisfaction = dS_N/dq_R"
+          ]
+        },
+        {
+          "id": "resource_process",
+          "source": "Resource",
+          "target": "Process",
+          "cardinality": "n:m",
+          "types": [
+            "input",
+            "catalyst",
+            "energy",
+            "tool",
+            "infrastructure",
+            "information",
+            "labor",
+            "reserve"
+          ],
+          "parameters": {
+            "quantity": "numeric",
+            "criticality": "[0,1]",
+            "substitutability": "[0,1]",
+            "reusability": "[0,1]",
+            "loss_rate": "[0,1]",
+            "efficiency": "context-dependent",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "notes": [
+            "A Resource may also be an output of a Process"
+          ]
+        },
+        {
+          "id": "process_product",
+          "source": "Process",
+          "target": "Product",
+          "cardinality": "n:m",
+          "types": [
+            "produces",
+            "transformsInto",
+            "assembles",
+            "modifies",
+            "repairs",
+            "destroys",
+            "recycles"
+          ],
+          "parameters": {
+            "quantity": "numeric",
+            "quality": "[0,1] or domain scale",
+            "durability": "domain-specific",
+            "usability": "[0,1]",
+            "defect_rate": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "notes": [
+            "Product may later also be classified as Resource"
+          ]
+        },
+        {
+          "id": "product_need",
+          "source": "Product",
+          "target": "Need",
+          "cardinality": "n:m",
+          "types": [
+            "directlySatisfies",
+            "enablesSatisfaction",
+            "partiallySatisfies",
+            "negativelyAffects"
+          ],
+          "parameters": {
+            "effect": "[-1,1]",
+            "coverage": "[0,1]",
+            "speed": "time to effect",
+            "reach": "number/share of affected entities",
+            "duration": "effect duration",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "formulas": [
+            "Delta D_N = -f(Product, Need)"
+          ]
+        },
+        {
+          "id": "product_state",
+          "source": "Product",
+          "target": "State",
+          "cardinality": "n:m",
+          "types": [
+            "changesState",
+            "maintainsState",
+            "restoresState",
+            "preventsDeterioration",
+            "degradesState",
+            "hasNoMeasuredEffect"
+          ],
+          "parameters": {
+            "delta_state": "domain-specific vector",
+            "effect": "[-1,1]",
+            "latency": "time",
+            "duration": "time",
+            "confidence": "[0,1]",
+            "context": "structured context"
+          },
+          "formulas": [
+            "Delta X = X(t1) - X(t0)",
+            "Delta D_N = d(X(t1), X_desired) - d(X(t0), X_desired)"
+          ]
+        },
+        {
+          "id": "state_event",
+          "source": "State",
+          "target": "Event",
+          "cardinality": "n:m",
+          "types": [
+            "triggersStateChange",
+            "causesTransition",
+            "terminatesState",
+            "initiatesState",
+            "modifiesState",
+            "observesStateChange"
+          ],
+          "parameters": {
+            "delta_state": "domain-specific",
+            "causal_strength": "[0,1]",
+            "causal_confidence": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp",
+            "context": "structured context"
+          }
+        },
+        {
+          "id": "event_process",
+          "source": "Event",
+          "target": "Process",
+          "cardinality": "n:m",
+          "types": [
+            "initiates",
+            "terminates",
+            "pauses",
+            "resumes",
+            "accelerates",
+            "slows",
+            "modifies",
+            "disrupts",
+            "resultsFrom"
+          ],
+          "parameters": {
+            "effect": "[-1,1]",
+            "trigger_strength": "[0,1]",
+            "causal_strength": "[0,1]",
+            "causal_confidence": "[0,1]",
+            "latency": "time",
+            "duration_of_effect": "time",
+            "confidence": "[0,1]"
+          }
+        },
+        {
+          "id": "process_state",
+          "source": "Process",
+          "target": "State",
+          "cardinality": "n:m",
+          "types": [
+            "improvesState",
+            "degradesState",
+            "maintainsState",
+            "stabilizesState",
+            "destabilizesState",
+            "transformsState",
+            "restoresState"
+          ],
+          "parameters": {
+            "direction": "[-1,1]",
+            "rate": "dX/dt",
+            "duration": "time",
+            "delta_state": "domain-specific vector",
+            "confidence": "[0,1]",
+            "context": "structured context"
+          },
+          "formulas": [
+            "dX/dt = F(Process, X, Context)",
+            "Delta X = integral(F(P,X,t), t0..t1)"
+          ]
+        },
+        {
+          "id": "entity_resource",
+          "source": "Entity",
+          "target": "Resource",
+          "cardinality": "n:m",
+          "types": [
+            "owns",
+            "controls",
+            "uses",
+            "consumes",
+            "hasAccessTo",
+            "stores",
+            "produces",
+            "transfers",
+            "requires",
+            "isExcludedFrom"
+          ],
+          "parameters": {
+            "quantity": "numeric",
+            "ownership": "[0,1]",
+            "control": "[0,1]",
+            "access": "[0,1]",
+            "usability": "[0,1]",
+            "priority": "domain-specific",
+            "claim_strength": "[0,1]",
+            "allocation_share": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "formulas": [
+            "EffectiveResource = Quantity * Access * Usability"
+          ]
+        },
+        {
+          "id": "entity_product",
+          "source": "Entity",
+          "target": "Product",
+          "cardinality": "n:m",
+          "types": [
+            "produces",
+            "owns",
+            "controls",
+            "uses",
+            "consumes",
+            "hasAccessTo",
+            "transfers",
+            "receives",
+            "stores",
+            "disposesOf",
+            "benefitsFrom",
+            "isHarmedBy"
+          ],
+          "parameters": {
+            "quantity": "numeric",
+            "ownership_share": "[0,1]",
+            "access_level": "[0,1]",
+            "usage_intensity": "[0,1]",
+            "benefit_effect": "[-1,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          }
+        },
+        {
+          "id": "entity_infrastructure",
+          "source": "Entity",
+          "target": "Infrastructure",
+          "cardinality": "n:m",
+          "types": [
+            "owns",
+            "controls",
+            "operates",
+            "uses",
+            "hasAccessTo",
+            "maintains",
+            "finances",
+            "dependsOn",
+            "providesAccessTo",
+            "isExcludedFrom"
+          ],
+          "parameters": {
+            "access": "[0,1]",
+            "control": "[0,1]",
+            "utilization": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "formulas": [
+            "EffectiveCapacity = Capacity * Availability * Accessibility * Reliability"
+          ]
+        },
+        {
+          "id": "entity_location",
+          "source": "Entity",
+          "target": "Location",
+          "cardinality": "n:m",
+          "types": [
+            "locatedAt",
+            "occupies",
+            "operatesIn",
+            "originatesFrom",
+            "movesThrough",
+            "hasAccessTo",
+            "isRestrictedFrom",
+            "ownsLocation",
+            "controlsLocation",
+            "dependsOnLocation"
+          ],
+          "parameters": {
+            "distance": "numeric",
+            "travel_time": "time",
+            "accessibility": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          }
+        },
+        {
+          "id": "entity_information",
+          "source": "Entity",
+          "target": "Information",
+          "cardinality": "n:m",
+          "types": [
+            "creates",
+            "owns",
+            "stores",
+            "accesses",
+            "uses",
+            "transmits",
+            "receives",
+            "modifies",
+            "verifies",
+            "dependsOn",
+            "isRestrictedFrom",
+            "isRepresentedBy"
+          ],
+          "parameters": {
+            "access": "[0,1]",
+            "interpretability": "[0,1]",
+            "relevance": "[0,1]",
+            "usage": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "formulas": [
+            "EffectiveInformation = Access * Interpretability * Relevance * Reliability"
+          ]
+        },
+        {
+          "id": "entity_legal_construct",
+          "source": "Entity",
+          "target": "LegalConstruct",
+          "cardinality": "n:m",
+          "types": [
+            "holdsRight",
+            "hasObligation",
+            "ownsByLaw",
+            "isPartyTo",
+            "isBeneficiaryOf",
+            "isLiableUnder",
+            "isRestrictedBy",
+            "isAuthorizedBy",
+            "isProtectedBy",
+            "hasClaimAgainst"
+          ],
+          "parameters": {
+            "strength": "[0,1]",
+            "enforceability": "[0,1]",
+            "confidence": "[0,1]",
+            "valid_from": "timestamp",
+            "valid_to": "timestamp/nullable"
+          }
+        },
+        {
+          "id": "entity_state",
+          "source": "Entity",
+          "target": "State",
+          "cardinality": "1:n over time",
+          "types": [
+            "hasState",
+            "entersState",
+            "leavesState",
+            "maintainsState",
+            "isCharacterizedBy",
+            "hasReferenceState"
+          ],
+          "parameters": {
+            "confidence": "[0,1]",
+            "time": "timestamp/interval",
+            "stability": "[0,1]",
+            "rate_of_change": "dX/dt"
+          }
+        },
+        {
+          "id": "entity_event",
+          "source": "Entity",
+          "target": "Event",
+          "cardinality": "n:m",
+          "types": [
+            "participatesIn",
+            "causes",
+            "triggers",
+            "isAffectedBy",
+            "observes",
+            "prevents",
+            "isCreatedBy",
+            "isTerminatedBy",
+            "isTransferredBy",
+            "isModifiedBy"
+          ],
+          "parameters": {
+            "role": "categorical",
+            "effect": "[-1,1]",
+            "causal_strength": "[0,1]",
+            "causal_confidence": "[0,1]",
+            "relevance": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp"
+          }
+        },
+        {
+          "id": "entity_process",
+          "source": "Entity",
+          "target": "Process",
+          "cardinality": "n:m",
+          "types": [
+            "executes",
+            "participatesIn",
+            "controls",
+            "initiates",
+            "terminates",
+            "benefitsFrom",
+            "isHarmedBy",
+            "providesInputTo",
+            "receivesOutputFrom",
+            "dependsOn"
+          ],
+          "parameters": {
+            "participation_intensity": "[0,1]",
+            "effect": "[-1,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          }
+        },
+        {
+          "id": "infrastructure_process",
+          "source": "Infrastructure",
+          "target": "Process",
+          "cardinality": "n:m",
+          "types": [
+            "enables",
+            "supports",
+            "hosts",
+            "constrains",
+            "limitsCapacityOf",
+            "isRequiredBy",
+            "isUsedBy",
+            "isDegradedBy"
+          ],
+          "parameters": {
+            "capacity": "numeric",
+            "availability": "[0,1]",
+            "utilization": "[0,1]",
+            "criticality": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          }
+        },
+        {
+          "id": "location_resource_process",
+          "source": "Location",
+          "targets": [
+            "Resource",
+            "Process"
+          ],
+          "cardinality": "n:m",
+          "relation_groups": {
+            "resource": [
+              "contains",
+              "stores",
+              "providesAccessTo",
+              "isSourceOf",
+              "isDestinationOf",
+              "restrictsAccessTo"
+            ],
+            "process": [
+              "hosts",
+              "permits",
+              "restricts",
+              "enables",
+              "isRequiredFor",
+              "isAffectedBy"
+            ]
+          },
+          "parameters": {
+            "quantity": "numeric when Resource",
+            "access": "[0,1]",
+            "suitability": "[0,1] when Process",
+            "capacity": "numeric/domain-specific",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          }
+        },
+        {
+          "id": "information_process",
+          "source": "Information",
+          "target": "Process",
+          "cardinality": "n:m",
+          "types": [
+            "isInputTo",
+            "guides",
+            "controls",
+            "triggers",
+            "constrains",
+            "isProducedBy",
+            "isUpdatedBy",
+            "isValidatedBy",
+            "isRequiredBy"
+          ],
+          "parameters": {
+            "reliability": "[0,1]",
+            "relevance": "[0,1]",
+            "freshness": "[0,1]",
+            "interpretability": "[0,1]",
+            "confidence": "[0,1]",
+            "time": "timestamp/interval"
+          },
+          "formulas": [
+            "InformationEffectiveness = Reliability * Relevance * Freshness * Interpretability"
+          ]
+        },
+        {
+          "id": "legal_construct_resource_product_process",
+          "source": "LegalConstruct",
+          "targets": [
+            "Resource",
+            "Product",
+            "Process"
+          ],
+          "cardinality": "n:m",
+          "relation_groups": {
+            "resource": [
+              "definesOwnershipOf",
+              "grantsAccessTo",
+              "restrictsUseOf",
+              "createsClaimOn",
+              "permitsTransferOf",
+              "encumbers"
+            ],
+            "product": [
+              "definesOwnershipOf",
+              "licenses",
+              "restrictsDistributionOf",
+              "grantsUsageRight",
+              "createsLiabilityFor"
+            ],
+            "process": [
+              "authorizes",
+              "requires",
+              "prohibits",
+              "regulates",
+              "obligates",
+              "limits",
+              "createsLiabilityFor"
+            ]
+          },
+          "parameters": {
+            "strength": "[0,1]",
+            "enforceability": "[0,1]",
+            "confidence": "[0,1]",
+            "valid_from": "timestamp",
+            "valid_to": "timestamp/nullable"
+          }
+        }
+      ],
+      "core_cycle": [
+        "Entity",
+        "State",
+        "Need",
+        "Resource",
+        "Process",
+        "Product",
+        "State"
+      ],
+      "context_layers": [
+        "Infrastructure",
+        "Location",
+        "Information",
+        "LegalConstruct"
+      ],
+      "evolution": {
+        "allowed_change_types": [
+          "minor",
+          "structural",
+          "fundamental"
+        ],
+        "versioning_required": true,
+        "provenance_required": true,
+        "deprecated_before_archived": true,
+        "change_record_fields": [
+          "type",
+          "target",
+          "old",
+          "new",
+          "reason",
+          "evidence",
+          "author_or_system",
+          "time",
+          "confidence",
+          "version_from",
+          "version_to"
+        ]
+      }
+    },
+    "live_ontology": {
+      "purpose": "Runtime layer for concrete instances, observations, state updates, fuzzy memberships, confidence values and provenance.",
+      "instance_structure": {
+        "entity_id": "globally unique identifier",
+        "classes": {
+          "ClassName": {
+            "membership_value": "[0,1]",
+            "confidence": "[0,1]"
+          }
+        },
+        "properties": {
+          "property_name": {
+            "value": "typed value",
+            "unit": "optional",
+            "timestamp": "required for dynamic data",
+            "confidence": "[0,1]",
+            "provenance": "source/method/version"
+          }
+        },
+        "relations": [
+          {
+            "relation_type": "relation identifier",
+            "target_entity_id": "entity id",
+            "parameters": "relation-specific parameters",
+            "timestamp": "timestamp or interval",
+            "confidence": "[0,1]",
+            "provenance": "source/method/version"
+          }
+        ],
+        "states": [
+          {
+            "state_id": "unique state identifier",
+            "timestamp": "timestamp/interval",
+            "variables": "state vector",
+            "confidence": "[0,1]",
+            "provenance": "source/method/version"
+          }
+        ]
+      },
+      "update_pipeline": [
+        "ingest_data",
+        "validate_schema",
+        "map_to_entities",
+        "update_properties",
+        "update_relations",
+        "update_states",
+        "instantiate_or_update_need_instances",
+        "compute_need_parameters",
+        "compute_N_i_abs",
+        "aggregate_need_instances",
+        "compute_H_R",
+        "normalize_to_D_R_if_H_R_positive",
+        "recalculate_fuzzy_memberships",
+        "recalculate_confidence",
+        "detect_constraint_violations",
+        "record_provenance",
+        "version_snapshot"
+      ]
+    },
+    "needs_matrix_model": {
+      "hierarchy": {
+        "levels": [
+          "NeedType",
+          "Subcategory",
+          "NeedInstance"
+        ],
+        "rule": "NeedInstance is instantiated for a concrete Entity/group and time/context."
+      },
+      "top_level_need_types_v1": [
+        "ExistenceMaintenance",
+        "PhysicalFunctionalIntegrity",
+        "Safety",
+        "EnvironmentAndSpace",
+        "AccessToResources",
+        "InformationAndCognition",
+        "AutonomyAndAction",
+        "SocialNeeds",
+        "ReproductionAndContinuation",
+        "DevelopmentAndCapabilityExpansion",
+        "PositiveSubjectiveExperience",
+        "SelfRealizationCreativityMeaning"
+      ],
+      "absolute_need_intensity": {
+        "symbol": "N_i_abs(t)",
+        "meaning": "Unnormalized absolute intensity of NeedType i at time t.",
+        "components": {
+          "D_i": "deficit: distance between actual and desired/reference state",
+          "H_i": "severity of consequences if unmet",
+          "U_i": "urgency / time-to-harm",
+          "P_i": "scale: number/share of affected entities",
+          "Dep_i": "dependency of normal existence/functioning on satisfaction",
+          "S_i": "subjective significance and revealed preference signals",
+          "R_i": "irreversibility of consequences"
+        },
+        "formula_status": "open",
+        "working_form": "N_i_abs(t) = f(D_i, H_i, U_i, P_i, Dep_i, S_i, R_i)"
+      },
+      "confidence": {
+        "symbol": "C_i(t)",
+        "range": "[0,1]",
+        "rule": "Confidence is stored separately from need intensity; low confidence does not imply low need."
+      },
+      "aggregation": {
+        "dimensions": [
+          "NeedType",
+          "EntityGroup",
+          "Location",
+          "Time"
+        ],
+        "working_tensor": "N_abs(i,g,l,t)",
+        "rule": "NeedInstances are aggregated by NeedType and any selected grouping dimensions before normalization."
+      },
+      "normalized_matrix": {
+        "symbol": "D_R(t)",
+        "weight_symbol": "w_i,R(t)",
+        "formula": "w_i,R(t) = N_i_abs(t) / sum_j N_j_abs(t)",
+        "normalization_constraint": "sum_i w_i,R(t) = 1 when H_R(t) > 0",
+        "meaning": "Relative structure of currently unmet needs in reference system R."
+      },
+      "absolute_unmet_need_level": {
+        "symbol": "H_R(t)",
+        "formula": "H_R(t) = sum_i N_i_abs(t)",
+        "meaning": "Scalar total absolute level of unmet needs.",
+        "zero_case": {
+          "condition": "H_R(t) = 0",
+          "interpretation": "All represented needs are satisfied in the selected slice.",
+          "D_R_status": "undefined/non-informative because normalization denominator is zero"
+        }
+      },
+      "data_pipeline": [
+        "ingest_data",
+        "validate_schema",
+        "map_to_entities",
+        "update_states",
+        "instantiate_or_update_need_instances",
+        "compute_need_parameters",
+        "compute_N_i_abs",
+        "aggregate_by_need_type_group_location_time",
+        "compute_H_R",
+        "normalize_to_D_R_if_H_R_positive",
+        "update_confidence",
+        "record_provenance",
+        "version_snapshot"
+      ]
+    },
+    "changelog": [
+      {
+        "version": "3.1",
+        "date": "2026-09-05",
+        "type": "structural",
+        "changes": [
+          "Added NeedType → Subcategory → NeedInstance hierarchy",
+          "Added 12 working top-level NeedType classes",
+          "Replaced temporary Q_i need notation with N_i_abs(t)",
+          "Added H_R(t) as total absolute unmet-need level",
+          "Separated C_i(t) confidence from need intensity",
+          "Added working component set D_i,H_i,U_i,P_i,Dep_i,S_i,R_i",
+          "Added aggregation and normalization rules for D_R(t)",
+          "Defined behavior for H_R(t)=0",
+          "Updated live ontology data pipeline"
+        ]
+      }
+    ]
+  }
+}
