@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <key id="d0" for="node" yfiles.type="nodegraphics" />
+  <key id="d1" for="edge" yfiles.type="edgegraphics" />
+  <key id="d2" for="graph" attr.name="description" attr.type="string" />
+  <graph id="G" edgedefault="directed">
+    <data key="d2">Reality Ontology 3.1 — declared NeedType → Subcategory → NeedInstance hierarchy and top-level NeedType classes.</data>
+    <node id="NeedType">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="62" width="250" x="450" y="40" />
+          <y:Fill color="#E8E1FA" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#2E2255" visible="true">NeedType</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Subcategory">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="62" width="250" x="450" y="230" />
+          <y:Fill color="#E8E1FA" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#2E2255" visible="true">Subcategory</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="NeedInstance">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="62" width="250" x="450" y="420" />
+          <y:Fill color="#E8E1FA" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#2E2255" visible="true">NeedInstance</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="h0" source="NeedType" target="Subcategory">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">has subcategory</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="h1" source="Subcategory" target="NeedInstance">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">has instance</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_0">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="20" y="665" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">ExistenceMaintenance</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_0" source="type_0" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_1">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="275" y="665" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">PhysicalFunctionalIntegrity</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_1" source="type_1" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_2">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="530" y="665" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">Safety</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_2" source="type_2" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_3">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="785" y="665" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">EnvironmentAndSpace</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_3" source="type_3" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_4">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="20" y="770" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">AccessToResources</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_4" source="type_4" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_5">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="275" y="770" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">InformationAndCognition</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_5" source="type_5" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_6">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="530" y="770" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">AutonomyAndAction</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_6" source="type_6" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_7">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="785" y="770" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">SocialNeeds</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_7" source="type_7" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_8">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="20" y="875" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">ReproductionAndContinuation</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_8" source="type_8" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_9">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="275" y="875" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">DevelopmentAndCapabilityExpansion</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_9" source="type_9" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_10">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="530" y="875" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">PositiveSubjectiveExperience</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_10" source="type_10" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="type_11">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="55" width="230" x="785" y="875" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">SelfRealizationCreativityMeaning</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="type_edge_11" source="type_11" target="NeedType">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#8E6C00" type="dashed" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">is top-level NeedType</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+</graphml>

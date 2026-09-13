@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <key id="d0" for="node" yfiles.type="nodegraphics" />
+  <key id="d1" for="edge" yfiles.type="edgegraphics" />
+  <key id="d2" for="graph" attr.name="description" attr.type="string" />
+  <graph id="G" edgedefault="directed">
+    <data key="d2">Reality Ontology 3.1 — all explicitly declared relation groups. Edge labels preserve source relation type names.</data>
+    <node id="Entity">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="970.0" y="430.0" />
+          <y:Fill color="#263238" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#FFFFFF" visible="true">Entity</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Resource">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="898.5640897740316" y="613.8178779349032" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Resource</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Product">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="706.9367558508488" y="739.2748784205362" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Product</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Infrastructure">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="455.95832277702175" y="766.5392902395172" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Infrastructure</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Location">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="225.31266972462174" y="686.9548552804479" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Location</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Information">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="88.22816187347621" y="525.7890693260861" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Information</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="LegalConstruct">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="88.22816187347615" y="334.210930673914" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">LegalConstruct</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="State">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="225.31266972462163" y="173.04514471955224" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">State</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Event">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="455.95832277702164" y="93.46070976048287" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Event</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Process">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="706.9367558508487" y="120.72512157946369" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Process</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Need">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="52" width="160" x="898.5640897740316" y="246.18212206509688" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">Need</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="r0" source="Entity" target="Need">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_need [n:m]
+hasNeed · representsNeed · affectedByNeed · generatesNeed</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r1" source="Need" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">need_state [n:m]
+derivedFromState · targetsState · changesState · resolvedByStateTransition</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r2" source="Need" target="Resource">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">need_resource [n:m]
+satisfies · partiallySatisfies · enablesSatisfaction · substitutesFor</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r3" source="Resource" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">resource_process [n:m]
+input · catalyst · energy · tool · infrastructure · information · labor · reserve</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r4" source="Process" target="Product">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">process_product [n:m]
+produces · transformsInto · assembles · modifies · repairs · destroys · recycles</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r5" source="Product" target="Need">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">product_need [n:m]
+directlySatisfies · enablesSatisfaction · partiallySatisfies · negativelyAffects</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r6" source="Product" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">product_state [n:m]
+changesState · maintainsState · restoresState · preventsDeterioration · degradesState · hasNoMeasuredEffect</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r7" source="State" target="Event">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">state_event [n:m]
+triggersStateChange · causesTransition · terminatesState · initiatesState · modifiesState · observesStateChange</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r8" source="Event" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">event_process [n:m]
+initiates · terminates · pauses · resumes · accelerates · slows · modifies · disrupts · resultsFrom</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r9" source="Process" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">process_state [n:m]
+improvesState · degradesState · maintainsState · stabilizesState · destabilizesState · transformsState · restoresState</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r10" source="Entity" target="Resource">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_resource [n:m]
+owns · controls · uses · consumes · hasAccessTo · stores · produces · transfers · requires · isExcludedFrom</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r11" source="Entity" target="Product">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_product [n:m]
+produces · owns · controls · uses · consumes · hasAccessTo · transfers · receives · stores · disposesOf · benefitsFrom · isHarmedBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r12" source="Entity" target="Infrastructure">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_infrastructure [n:m]
+owns · controls · operates · uses · hasAccessTo · maintains · finances · dependsOn · providesAccessTo · isExcludedFrom</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r13" source="Entity" target="Location">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_location [n:m]
+locatedAt · occupies · operatesIn · originatesFrom · movesThrough · hasAccessTo · isRestrictedFrom · ownsLocation · controlsLocation · dependsOnLocation</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r14" source="Entity" target="Information">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_information [n:m]
+creates · owns · stores · accesses · uses · transmits · receives · modifies · verifies · dependsOn · isRestrictedFrom · isRepresentedBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r15" source="Entity" target="LegalConstruct">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_legal_construct [n:m]
+holdsRight · hasObligation · ownsByLaw · isPartyTo · isBeneficiaryOf · isLiableUnder · isRestrictedBy · isAuthorizedBy · isProtectedBy · hasClaimAgainst</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r16" source="Entity" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_state [1:n over time]
+hasState · entersState · leavesState · maintainsState · isCharacterizedBy · hasReferenceState</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r17" source="Entity" target="Event">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_event [n:m]
+participatesIn · causes · triggers · isAffectedBy · observes · prevents · isCreatedBy · isTerminatedBy · isTransferredBy · isModifiedBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r18" source="Entity" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">entity_process [n:m]
+executes · participatesIn · controls · initiates · terminates · benefitsFrom · isHarmedBy · providesInputTo · receivesOutputFrom · dependsOn</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r19" source="Infrastructure" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">infrastructure_process [n:m]
+enables · supports · hosts · constrains · limitsCapacityOf · isRequiredBy · isUsedBy · isDegradedBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r20" source="Location" target="Resource">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">location_resource_process [n:m]
+contains · stores · providesAccessTo · isSourceOf · isDestinationOf · restrictsAccessTo</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r21" source="Location" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">location_resource_process [n:m]
+hosts · permits · restricts · enables · isRequiredFor · isAffectedBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r22" source="Information" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">information_process [n:m]
+isInputTo · guides · controls · triggers · constrains · isProducedBy · isUpdatedBy · isValidatedBy · isRequiredBy</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r23" source="LegalConstruct" target="Resource">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">legal_construct_resource_product_process [n:m]
+definesOwnershipOf · grantsAccessTo · restrictsUseOf · createsClaimOn · permitsTransferOf · encumbers</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r24" source="LegalConstruct" target="Product">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">legal_construct_resource_product_process [n:m]
+definesOwnershipOf · licenses · restrictsDistributionOf · grantsUsageRight · createsLiabilityFor</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="r25" source="LegalConstruct" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">legal_construct_resource_product_process [n:m]
+authorizes · requires · prohibits · regulates · obligates · limits · createsLiabilityFor</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+</graphml>

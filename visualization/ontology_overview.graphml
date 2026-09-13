@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <key id="d0" for="node" yfiles.type="nodegraphics" />
+  <key id="d1" for="edge" yfiles.type="edgegraphics" />
+  <key id="d2" for="graph" attr.name="description" attr.type="string" />
+  <graph id="G" edgedefault="directed">
+    <data key="d2">Reality Ontology 3.1 — overview of classes, inheritance, core cycle, and context layers.</data>
+    <node id="Entity">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="62" width="190" x="440" y="30" />
+          <y:Fill color="#263238" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#FFFFFF" visible="true">Entity
+(base class)</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="Resource">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="830.0" y="330.0" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Resource</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Resource" source="Resource" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Product">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="768.0888778041607" y="462.45700027662144" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Product</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Product" source="Product" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Infrastructure">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="602.0118550707357" y="552.859838861857" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Infrastructure</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Infrastructure" source="Infrastructure" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Location">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="384.49721307341883" y="572.5062532608285" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Location</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Location" source="Location" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Information">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="184.60431376133886" y="515.1586457167932" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">Information</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Information" source="Information" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="LegalConstruct">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="65.79774029034604" y="399.0244764261503" />
+          <y:Fill color="#DDF5E3" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#173B24" visible="true">LegalConstruct</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_LegalConstruct" source="LegalConstruct" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="State">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="65.79774029034598" y="260.9755235738498" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">State</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_State" source="State" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Event">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="184.60431376133877" y="144.84135428320675" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Event</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Event" source="Event" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Process">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="384.4972130734188" y="87.49374673917148" />
+          <y:Fill color="#DDEBFF" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#102A43" visible="true">Process</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Process" source="Process" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Need">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="602.0118550707356" y="107.14016113814296" />
+          <y:Fill color="#FCE0E6" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4A1621" visible="true">Need</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="inh_Need" source="Need" target="Entity">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#546E7A" type="line" width="1.2" />
+          <y:Arrows source="none" target="white_delta" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">inherits from</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <node id="Subject">
+      <data key="d0">
+        <y:ShapeNode>
+          <y:Geometry height="58" width="180" x="768.0888778041607" y="197.5429997233786" />
+          <y:Fill color="#FFF1C7" transparent="false" />
+          <y:BorderStyle color="#455A64" type="line" width="1.5" />
+          <y:NodeLabel alignment="center" fontFamily="Dialog" fontSize="12" fontStyle="plain" textColor="#4B3500" visible="true">Subject
+(computed class)</y:NodeLabel>
+          <y:Shape type="roundrectangle" />
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="cycle_0" source="Entity" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">hasState / entersState / leavesState / maintainsState / isCharacterizedBy / hasReferenceState</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="cycle_1" source="Need" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">derivedFromState / targetsState / changesState / resolvedByStateTransition</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="cycle_2" source="Need" target="Resource">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">satisfies / partiallySatisfies / enablesSatisfaction / substitutesFor</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="cycle_3" source="Resource" target="Process">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">input / catalyst / energy / tool / infrastructure / information / labor / reserve</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="cycle_4" source="Process" target="Product">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">produces / transformsInto / assembles / modifies / repairs / destroys / recycles</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="cycle_5" source="Product" target="State">
+      <data key="d1">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0" />
+          <y:LineStyle color="#607D8B" type="line" width="1.2" />
+          <y:Arrows source="none" target="standard" />
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" fontFamily="Dialog" fontSize="9" fontStyle="plain" textColor="#263238" visible="true">changesState / maintainsState / restoresState / preventsDeterioration / degradesState / hasNoMeasuredEffect</y:EdgeLabel>
+          <y:BendStyle smoothed="false" />
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+</graphml>
